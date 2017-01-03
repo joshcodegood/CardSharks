@@ -61,10 +61,10 @@ let values = [];
 // if (values = "ACE") {
 //     values = 14
 // };
-// let JACK = 11;
-// let QUEEN = 12;
-// let KING = 13;
-// let ACE = 14;
+let JACK = 11;
+let QUEEN = 12;
+let KING = 13;
+let ACE = 14;
 window.addEventListener('load', function () {
     console.log('Hi Mom!');
 
@@ -73,7 +73,7 @@ window.addEventListener('load', function () {
     console.log(values);
     pickHigher();   // run pick higher
 
-    //pickLower();
+    pickLower();
 });
 
 function newGame() {
@@ -110,9 +110,9 @@ function pickHigher() {
         drawCard.addEventListener('load', function () {
             let response = JSON.parse(drawCard.responseText);
             console.log(response.cards[0].value);
-            if  (response.cards[0].value === "JACK") {
-                response.cards[0].value === 11
-            };
+            // if  (response.cards[0].value === "JACK") {
+            //     response.cards[0].value === 11
+            // };
             // if  (response.cards[0].value === "QUEEN") {
             //     response.cards[0].value === 12
             // };
