@@ -81,9 +81,25 @@ function newGame() {
     newDeck.open('GET', 'https://deckofcardsapi.com/api/deck/new/draw/?count=1');
     newDeck.addEventListener('load', function () {
         let response = JSON.parse(newDeck.responseText);
-        deck.push(response.deck_id);     
+        deck.push(response.deck_id);
 
-        values.push(response.cards[0].value)
+        let val = response.cards[0].value;
+
+        console.log("val = " + val);
+        if (val === "JACK") {
+            val = 11
+        } else if (val === "QUEEN") {
+            val = 12
+        } else if (val === "KING") {
+            val = 13
+        } else if (val === "ACE") {
+            val = 14
+        } else {
+            val = parseInt(val);
+        }
+        console.log("After 'if' statement, val = " + val);
+
+        values.push(val);
         let main = document.querySelector('.main');
         let sec = document.createElement('ul');
         main.appendChild(sec);
@@ -100,7 +116,7 @@ function newGame() {
 };
 
 function pickHigher() {
-    
+
     console.log('pickHigher loaded');
     let higher = document.querySelector('#higher');
     higher.addEventListener('click', function () {
@@ -109,21 +125,24 @@ function pickHigher() {
         drawCard.open('GET', 'https://deckofcardsapi.com/api/deck/' + deck + '/draw/?count=1');
         drawCard.addEventListener('load', function () {
             let response = JSON.parse(drawCard.responseText);
-            console.log(response.cards[0].value);
-            // if  (response.cards[0].value === "JACK") {
-            //     response.cards[0].value === 11
-            // };
-            // if  (response.cards[0].value === "QUEEN") {
-            //     response.cards[0].value === 12
-            // };
-            // if  (response.cards[0].value === "KING") {
-            //     response.cards[0].value === 13
-            // };
-            // if  (response.cards[0].value === "ACE") {
-            //     response.cards[0].value === 14
-            // };
-            console.log(response.cards[0].value);
-            let main = document.querySelector('.main');
+            let val = response.cards[0].value;
+
+            console.log("val = " + val);
+            if (val === "JACK") {
+                val = 11
+            } else if (val === "QUEEN") {
+                val = 12
+            } else if (val === "KING") {
+                val = 13
+            } else if (val === "ACE") {
+                val = 14
+            } else {
+                val = parseInt(val);
+            }
+            console.log("After 'if' statement, val = " + val);
+
+
+            let main = document.querySelector('main');
             let sec = document.createElement('ul');
             main.appendChild(sec);
             let pic = document.createElement('img');
@@ -134,19 +153,19 @@ function pickHigher() {
             sec.appendChild(desc);
 
 
-            if (response.cards[0].value > values[0]) {
+            if (val > values[0]) {
                 console.log('YAY!')
                 console.log(response.cards[0].value);
                 values.shift();
                 console.log(values);
-                values.push(response.cards[0].value);
+                values.push(val);
                 console.log(values);
             } else {
                 console.log("wah wah");
                 console.log(response.cards[0].value);
-                lose = confirm("You lose. Play again?");
-                 if (lose === true) {
-                     location.reload();
+                lose = confirm("Sadly, you drew a " + response.cards[0].value + " of " + response.cards[0].suit + ". You lose. Play again?");
+                if (lose === true) {
+                    location.reload();
                 }
             }
         });
@@ -171,6 +190,21 @@ function pickLower() {
         drawCard.open('GET', 'https://deckofcardsapi.com/api/deck/' + deck + '/draw/?count=1');
         drawCard.addEventListener('load', function () {
             let response = JSON.parse(drawCard.responseText);
+            let val = response.cards[0].value;
+
+            console.log("val = " + val);
+            if (val === "JACK") {
+                val = 11
+            } else if (val === "QUEEN") {
+                val = 12
+            } else if (val === "KING") {
+                val = 13
+            } else if (val === "ACE") {
+                val = 14
+            } else {
+                val = parseInt(val);
+            }
+            console.log("After 'if' statement, val = " + val);
             //console.log(response);
             let main = document.querySelector('.main');
             let sec = document.createElement('ul');
@@ -183,19 +217,19 @@ function pickLower() {
             sec.appendChild(desc);
 
 
-            if (response.cards[0].value < values[0]) {
+            if (val < values[0]) {
                 console.log('YAY!')
                 console.log(response.cards[0].value);
                 values.shift();
                 console.log(values);
-                values.push(response.cards[0].value);
+                values.push(val);
                 console.log(values);
             } else {
                 console.log("wah wah");
                 console.log(response.cards[0].value);
-                lose = confirm("You lose. Play again?");
+                lose = confirm("Sadly, you drew a " + response.cards[0].value + " of " + response.cards[0].suit + ". You lose. Play again?");
                 if (lose === true) {
-                location.reload();
+                    location.reload();
                 }
             }
         });
@@ -206,3 +240,19 @@ function pickLower() {
 
 
 }
+
+// function isFaceCard (card) {
+//     console.log("Card value = " + card);
+//         if  (val === "JACK") {
+//             val = 11
+//         } else if  (val === "QUEEN") {
+//             val = 12
+//         } else if  (val === "KING") {
+//             val = 13
+//         } else if  (val === "ACE") {
+//             val = 14
+//         } else {
+//             val = parseInt(val);
+//         }
+//         console.log("After 'if' statement, val = " + val);
+// }

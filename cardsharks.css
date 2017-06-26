@@ -1,0 +1,11 @@
+body {
+  background-color: #80CFA9;
+  text-align: center; }
+  body main {
+    display: flex;
+    background-color: #308834; }
+  body .buttons {
+    display: flex;
+    justify-content: center; }
+
+/*# sourceMappingURL=cardsharks.css.map */
