@@ -1,33 +1,20 @@
 /**
- * Many moons ago there was a game show called Card Sharks. The most gripping part of the game was when contestants 
- * were given a playing card and asked to guess whether the next one from the deck would be higher or lower 
- * (I was young, don't judge). If they successfully guessed five times in a row then they won the match. If they 
- * guessed incorrectly at any point they lost the match. Recreate a web-based version of Card Sharks for the world 
- * to enjoy.
+ * Planned upgrade 1:
  * 
- * Focus primarily on functionality on this project, though feel free to spend time on improving the design as well.
- * 
- * Tier 1: crust edition
- * 
- * Display a card when the page first loads, and give users a "higher" and "lower" button. When they click, a new 
- * card should be chosen and displayed along with the player's guess. If the player was correct they should be able 
- * to guess again. If they were wrong then they should lose the round.
- * The same card should not be able to come up more than once in a single match.
- * 
- * Tier 2: mantle edition
- * 
- * Give the player a "play again" button when the game ends. Track the win rate of the player across multiple games 
+ * Track the win rate of the player across multiple games 
  * and display this rate somewhere on the page.
  * 
- * Use the Deck of Cards API to fetch new cards.
  * 
- * Tier 3: core edition
+ * Planned upgrade 2:
  * 
- * The original game was actually two player, and after a successful guess players could either pause or keep 
- * guessing. The first player that made it through all five guesses without being incorrect won. Make your game 
+ * The original game was actually two player, and after a 
+ * successful guess players could either pause or keep 
+ * guessing. The first player that made it through all five
+ * guesses without being incorrect won. Make the game 
  * support two different players.
  * 
- * Allow players to specify a name and keep track of each player's win rate independently.
+ * Allow players to specify a name and keep track of each
+ * player's win rate independently.
  */
 
 /**
@@ -47,30 +34,17 @@
  * 4. if player chooses incorrectly, the game is over and the deck should be reshuffled.
  */
 
-let deck = [];
-let values = [];
-// if (values = "JACK") {
-//     values = 11
-// };
-// if (values = "QUEEN") {
-//     values = 12
-// };
-// if (values = "KING") {
-//     values = 13
-// };
-// if (values = "ACE") {
-//     values = 14
-// };
-let JACK = 11;
-let QUEEN = 12;
-let KING = 13;
-let ACE = 14;
+let deck;
+let currentVal = 0;
+let points = 0;
+let score = 0;
+
 window.addEventListener('load', function () {
     console.log('Hi Mom!');
 
     newGame(); //load newGame
     console.log(deck);
-    console.log(values);
+    console.log(currentVal);
     pickHigher();   // run pick higher
 
     pickLower();
@@ -81,42 +55,40 @@ function newGame() {
     newDeck.open('GET', 'https://deckofcardsapi.com/api/deck/new/draw/?count=1');
     newDeck.addEventListener('load', function () {
         let response = JSON.parse(newDeck.responseText);
-        deck.push(response.deck_id);
+        deck = response.deck_id;
 
-        let val = response.cards[0].value;
+        let newVal = response.cards[0].value;
 
-        console.log("val = " + val);
-        if (val === "JACK") {
-            val = 11
-        } else if (val === "QUEEN") {
-            val = 12
-        } else if (val === "KING") {
-            val = 13
-        } else if (val === "ACE") {
-            val = 14
+        console.log("newVal = " + newVal);
+        if (newVal === "JACK") {
+            newVal = 11
+        } else if (newVal === "QUEEN") {
+            newVal = 12
+        } else if (newVal === "KING") {
+            newVal = 13
+        } else if (newVal === "ACE") {
+            newVal = 14
         } else {
-            val = parseInt(val);
+            newVal = parseInt(newVal);
         }
-        console.log("After 'if' statement, val = " + val);
+        console.log("After 'if' statement, newVal = " + newVal);
 
-        values.push(val);
+        currentVal = newVal;
         let main = document.querySelector('.main');
-        let sec = document.createElement('ul');
-        main.appendChild(sec);
+        let fig = document.createElement('figure');
+        main.appendChild(fig);
         let pic = document.createElement('img');
         pic.src = response.cards[0].image;
-        sec.appendChild(pic);
-        let desc = document.createElement('h3');
-        desc.textContent = "The " + response.cards[0].value + " of " + response.cards[0].suit;
-        sec.appendChild(desc);
-        console.log("newGame loaded")
-
+        fig.appendChild(pic);
+        let figcap = document.createElement('figcaption');
+        figcap.textContent = "The " + response.cards[0].value + " of " + response.cards[0].suit;
+        fig.appendChild(figcap);
+        console.log("newGame loaded");
     });
     newDeck.send();
 };
 
 function pickHigher() {
-
     console.log('pickHigher loaded');
     let higher = document.querySelector('#higher');
     higher.addEventListener('click', function () {
@@ -125,41 +97,44 @@ function pickHigher() {
         drawCard.open('GET', 'https://deckofcardsapi.com/api/deck/' + deck + '/draw/?count=1');
         drawCard.addEventListener('load', function () {
             let response = JSON.parse(drawCard.responseText);
-            let val = response.cards[0].value;
+            let newVal = response.cards[0].value;
 
-            console.log("val = " + val);
-            if (val === "JACK") {
-                val = 11
-            } else if (val === "QUEEN") {
-                val = 12
-            } else if (val === "KING") {
-                val = 13
-            } else if (val === "ACE") {
-                val = 14
+            //Check face cards and set to int
+
+            console.log("newVal = " + newVal);
+            if (newVal === "JACK") {
+                newVal = 11
+            } else if (newVal === "QUEEN") {
+                newVal = 12
+            } else if (newVal === "KING") {
+                newVal = 13
+            } else if (newVal === "ACE") {
+                newVal = 14
             } else {
-                val = parseInt(val);
+                newVal = parseInt(newVal);
             }
-            console.log("After 'if' statement, val = " + val);
-
-
-            let main = document.querySelector('main');
-            let sec = document.createElement('ul');
-            main.appendChild(sec);
+            console.log("After 'if' statement, newVal = " + newVal);
+            
+            //Append to DOM
+            let main = document.querySelector('.main');
+            let fig = document.createElement('figure');
+            main.appendChild(fig);
             let pic = document.createElement('img');
             pic.src = response.cards[0].image;
-            sec.appendChild(pic);
-            let desc = document.createElement('h3');
-            desc.textContent = "The " + response.cards[0].value + " of " + response.cards[0].suit;
-            sec.appendChild(desc);
+            fig.appendChild(pic);
+            let figcap = document.createElement('figcaption');
+            figcap.textContent = "The " + response.cards[0].value + " of " + response.cards[0].suit;
+            fig.appendChild(figcap);
 
-
-            if (val > values[0]) {
+            if (newVal > currentVal) {
                 console.log('YAY!')
                 console.log(response.cards[0].value);
-                values.shift();
-                console.log(values);
-                values.push(val);
-                console.log(values);
+                currentVal = newVal;
+                console.log(currentVal);
+                //currentVal.push(newVal);
+                console.log(currentVal);
+                addPoint()
+                winCheck()
             } else {
                 console.log("wah wah");
                 console.log(response.cards[0].value);
@@ -169,19 +144,11 @@ function pickHigher() {
                 }
             }
         });
-
         drawCard.send();
-
     });
-
-
 }
 
 function pickLower() {
-    // let JACK = 11;
-    // let QUEEN = 12;
-    // let KING = 13;
-    // let ACE = 14;
     console.log('pickLower loaded');
     let higher = document.querySelector('#lower');
     higher.addEventListener('click', function () {
@@ -190,67 +157,79 @@ function pickLower() {
         drawCard.open('GET', 'https://deckofcardsapi.com/api/deck/' + deck + '/draw/?count=1');
         drawCard.addEventListener('load', function () {
             let response = JSON.parse(drawCard.responseText);
-            let val = response.cards[0].value;
+            let newVal = response.cards[0].value;
 
-            console.log("val = " + val);
-            if (val === "JACK") {
-                val = 11
-            } else if (val === "QUEEN") {
-                val = 12
-            } else if (val === "KING") {
-                val = 13
-            } else if (val === "ACE") {
-                val = 14
+            console.log("newVal = " + newVal);
+            if (newVal === "JACK") {
+                newVal = 11
+            } else if (newVal === "QUEEN") {
+                newVal = 12
+            } else if (newVal === "KING") {
+                newVal = 13
+            } else if (newVal === "ACE") {
+                newVal = 14
             } else {
-                val = parseInt(val);
+                newVal = parseInt(newVal);
             }
-            console.log("After 'if' statement, val = " + val);
-            //console.log(response);
+            console.log("After 'if' statement, newVal = " + newVal);
             let main = document.querySelector('.main');
-            let sec = document.createElement('ul');
-            main.appendChild(sec);
+            let fig = document.createElement('figure');
+            main.appendChild(fig);
             let pic = document.createElement('img');
             pic.src = response.cards[0].image;
-            sec.appendChild(pic);
-            let desc = document.createElement('h3');
-            desc.textContent = "The " + response.cards[0].value + " of " + response.cards[0].suit;
-            sec.appendChild(desc);
+            fig.appendChild(pic);
+            let figcap = document.createElement('figcaption');
+            figcap.textContent = "The " + response.cards[0].value + " of " + response.cards[0].suit;
+            fig.appendChild(figcap);
 
-
-            if (val < values[0]) {
+            if (newVal < currentVal) {
                 console.log('YAY!')
-                console.log(response.cards[0].value);
-                values.shift();
-                console.log(values);
-                values.push(val);
-                console.log(values);
+                currentVal = newVal;
+                console.log(currentVal);
+                addPoint();
+                winCheck();
             } else {
                 console.log("wah wah");
-                console.log(response.cards[0].value);
                 lose = confirm("Sadly, you drew a " + response.cards[0].value + " of " + response.cards[0].suit + ". You lose. Play again?");
                 if (lose === true) {
                     location.reload();
                 }
             }
         });
-
         drawCard.send();
-
     });
+}
 
+function addPoint() {
+    points++
+    console.log("Points so far: " + points);
+}
 
+function winCheck() {
+    if (points === 5) {
+        let again = confirm("You won the match! New game?");
+        if (again === true) {
+            score++
+            console.log("Overall score is " + score);
+            let main = document.querySelector('.main');
+            while (main.firstChild) {
+                main.removeChild(main.firstChild);
+            }
+            newGame();
+        }
+    }
 }
 
 // function isFaceCard (card) {
 //     console.log("Card value = " + card);
 //         if  (val === "JACK") {
-//             val = 11
+//             return val = 11
 //         } else if  (val === "QUEEN") {
-//             val = 12
+//             return val = 12
 //         } else if  (val === "KING") {
-//             val = 13
+//             return val = 13
 //         } else if  (val === "ACE") {
-//             val = 14
+//             return val = 14
 //         } else {
 //             val = parseInt(val);
 //         }

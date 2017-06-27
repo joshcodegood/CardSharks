@@ -3,7 +3,12 @@ body {
   text-align: center; }
   body main {
     display: flex;
-    background-color: #308834; }
+    flex-wrap: wrap;
+    width: 80%;
+    background-color: #308834;
+    overflow-y: scroll; }
+  body figure {
+    margin: 25px; }
   body .buttons {
     display: flex;
     justify-content: center; }
