@@ -127,6 +127,18 @@ body {
             font-weight: bold;
         }
 
+        button:hover {
+            margin: 1% 2%;
+            padding: 20px;
+            border-radius: 15px;
+            border: 10px solid $bg;
+            background-color: $edge;
+            color: $bg;
+            font-family: $font;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
         p {
             padding-top: 40px;
         }

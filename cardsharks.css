@@ -71,6 +71,16 @@ body {
       font-family: "Varela Round", sans-serif;
       font-size: 1.5em;
       font-weight: bold; }
+    body .buttons button:hover {
+      margin: 1% 2%;
+      padding: 20px;
+      border-radius: 15px;
+      border: 10px solid #29335C;
+      background-color: #E4572E;
+      color: #29335C;
+      font-family: "Varela Round", sans-serif;
+      font-size: 1.5em;
+      font-weight: bold; }
     body .buttons p {
       padding-top: 40px; }
   body h3 {
