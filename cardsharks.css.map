@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAAA,IAAK;EACD,gBAAgB,EAAE,OAAO;EACzB,UAAU,EAAE,MAAM;EAElB,SAAK;IACL,OAAO,EAAE,IAAI;IACb,gBAAgB,EAAE,OAAO;EAGzB,aAAS;IACL,OAAO,EAAE,IAAI;IACb,eAAe,EAAE,MAAM",
-"sources": ["cardsharks.scss"],
-"names": [],
-"file": "cardsharks.css"
-}
