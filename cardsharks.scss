@@ -15,6 +15,7 @@ body {
     text-align: center;
     margin: 0;
     padding: 0;
+    height: 622px;
 
     header {
         width: 100%;
@@ -34,7 +35,7 @@ body {
     .border {
         background-color: $edge;
         margin: auto;
-        width: 60%;
+        width: 900px;
         padding: 1.5%;
         border-radius: 25px;
     
@@ -46,48 +47,47 @@ body {
             background-color: $felt;
             border: 1px solid $felt;
             border-radius: 25px;
-            //overflow-y: scroll;
 
             figure:first-child {
-                margin: 2% 0 2% 20%;
+                margin: 1.8% 0 1.8% 5%;
                 position: static;
                 padding: 0;
             }
 
             figure:nth-child(2) {
                 position: absolute;
-                left: 405px;
+                left: 408px;
                 //margin: 2% 0 % 0;
                 padding: 0;
             }
 
             figure:nth-child(3) {
                 position: absolute;
-                left: 435px;
+                left: 550px;
                 //margin: 1.6% 0 1.6% 0;
                 padding: 0;
             }
 
             figure:nth-child(4) {
                 position: absolute;
-                left: 468px;
+                left: 700px;
                 //margin: 1.6% 0 1.6% 0;
                 padding: 0;
             }
 
             figure:nth-child(5) {
                 position: absolute;
-                left: 505px;
+                left: 845px;
                 //margin: 1.6% 0 1.6% 0;
                 padding: 0;
             }
 
-            figure:nth-child(6) {
-                position: absolute;
-                left: 535px;
-                //margin: 1.6% 0 1.6% 0;
-                padding: 0;
-            }
+            // figure:nth-child(6) {
+            //     position: absolute;
+            //     left: 535px;
+            //     //margin: 1.6% 0 1.6% 0;
+            //     padding: 0;
+            // }
 
             figure {
 
@@ -132,10 +132,14 @@ body {
         }
     }
 
+    h3 {
+        margin: 1%;
+    }
+
     footer {
-        a {
-            text-decoration: none;
-            color: $accent;
-        }
+            a {
+                text-decoration: none;
+                color: $accent;
+            }
     }
 }
