@@ -1,14 +1,141 @@
-body {
-    background-color: #80CFA9;
-    text-align: center;
+@import url('https://fonts.googleapis.com/css?family=Varela+Round');
 
-    main {
-    display: flex;
-    background-color: #308834
+//colors:
+$accent: #F3A712;
+$bg: #29335C;
+$secondary: #53B3CB;
+$felt: #A8C686;
+$edge: #E4572E;
+$font: 'Varela Round', sans-serif;
+
+body {
+    font-family: $font;
+    background-color: $bg;
+    color: $accent;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+
+    header {
+        width: 100%;
+        background-color: $accent;
+        color: $bg;
+
+        h1 {
+            margin-bottom: 0;
+        }
+
+        p {
+            font-size: .75em;
+            margin-top: 0;
+        }
+    }
+
+    .border {
+        background-color: $edge;
+        margin: auto;
+        width: 60%;
+        padding: 1.5%;
+        border-radius: 25px;
+    
+
+        main {
+            display: flex;
+            //width: 90%;
+            margin: auto;
+            background-color: $felt;
+            border: 1px solid $felt;
+            border-radius: 25px;
+            //overflow-y: scroll;
+
+            figure:first-child {
+                margin: 2% 0 2% 20%;
+                position: static;
+                padding: 0;
+            }
+
+            figure:nth-child(2) {
+                position: absolute;
+                left: 405px;
+                //margin: 2% 0 % 0;
+                padding: 0;
+            }
+
+            figure:nth-child(3) {
+                position: absolute;
+                left: 435px;
+                //margin: 1.6% 0 1.6% 0;
+                padding: 0;
+            }
+
+            figure:nth-child(4) {
+                position: absolute;
+                left: 468px;
+                //margin: 1.6% 0 1.6% 0;
+                padding: 0;
+            }
+
+            figure:nth-child(5) {
+                position: absolute;
+                left: 505px;
+                //margin: 1.6% 0 1.6% 0;
+                padding: 0;
+            }
+
+            figure:nth-child(6) {
+                position: absolute;
+                left: 535px;
+                //margin: 1.6% 0 1.6% 0;
+                padding: 0;
+            }
+
+            figure {
+
+                img {
+                    //box-shadow: -3px 3px 5px 6px rgba(0, 0, 0, 0.4);
+                    border-radius: 13px;
+                    //border: 8px solid $bg;
+                    //background: $bg;
+                }
+
+                figcaption {
+                    width: 100%;
+                    margin: 2%;
+                    border-radius: 5px;
+                    background-color: $felt;
+                    color: $bg;
+                }
+            }
+        }
     }
 
     .buttons {
+        background-color: $accent;
+        color: $bg;
         display: flex;
         justify-content: center;
+
+        button {
+            margin: 1% 2%;
+            padding: 20px;
+            border-radius: 15px;
+            border: 10px solid $edge;
+            background-color: $bg;
+            color: $accent;
+            font-family: $font;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        p {
+            padding-top: 40px;
+        }
+    }
+
+    footer {
+        a {
+            text-decoration: none;
+            color: $accent;
+        }
     }
 }
