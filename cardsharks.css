@@ -1,16 +1,57 @@
+@import url("https://fonts.googleapis.com/css?family=Dosis");
 body {
-  background-color: #80CFA9;
+  font-family: 'Dosis', sans-serif;
+  background-color: #29335C;
+  color: #F3A712;
   text-align: center; }
   body main {
     display: flex;
-    flex-wrap: wrap;
-    width: 80%;
-    background-color: #308834;
-    overflow-y: scroll; }
-  body figure {
-    margin: 25px; }
+    width: 60%;
+    margin: auto;
+    background-color: #A8C686;
+    border: 25px solid #E4572E;
+    border-radius: 25px; }
+  body figure:first-child {
+    margin: 2% 0 2% 20%;
+    position: static;
+    padding: 0; }
+  body figure:nth-child(2) {
+    position: absolute;
+    left: 405px;
+    margin: 1.6% 0 1.6% 0;
+    padding: 0; }
+  body figure:nth-child(3) {
+    position: absolute;
+    left: 435px;
+    margin: 1.6% 0 1.6% 0;
+    padding: 0; }
+  body figure:nth-child(4) {
+    position: absolute;
+    left: 468px;
+    margin: 1.6% 0 1.6% 0;
+    padding: 0; }
+  body figure:nth-child(5) {
+    position: absolute;
+    left: 505px;
+    margin: 1.6% 0 1.6% 0;
+    padding: 0; }
+  body figure:nth-child(6) {
+    position: absolute;
+    left: 535px;
+    margin: 1.6% 0 1.6% 0;
+    padding: 0; }
+  body figure img {
+    border-radius: 13px; }
+  body figure figcaption {
+    width: 100%;
+    margin: 2%;
+    border-radius: 5px;
+    background-color: #53B3CB;
+    color: #29335C; }
   body .buttons {
     display: flex;
     justify-content: center; }
+    body .buttons button {
+      background-color: #53B3CB; }
 
 /*# sourceMappingURL=cardsharks.css.map */
